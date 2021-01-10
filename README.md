@@ -1,4 +1,3 @@
-# tripick
 # TriPick
 ### http://tripick.gititregev.com/
 
