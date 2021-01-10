@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Contact Us</title>
+	<script src="freecontactformvalidation.js"></script>
+	<link rel='shortcut icon' type='image/png' href='images/favicon.png'/>
+	<link rel='stylesheet' href='includes/style/style.css'>
+	<link rel="stylesheet" href="includes/select2/select2.css">
+	<script>
+	required.add('Full_Name','NOT_EMPTY','Full Name');
+	required.add('Email_Address','EMAIL','Email Address');
+	required.add('Your_Message','NOT_EMPTY','Your Message');
+	required.add('AntiSpam','NOT_EMPTY','Anti-Spam Question');
+	</script>
+	</head>
+	<body>
+		<div id="wrapper">
+		<header id="header">
+			<a href="index.php"  id="logo"></a><!--Logo-->
+			<article class="peoplePic"></article>
+			<div class="clear"></div>				
+		</header>
+		<nav id="navigator">
+			<article class="bigCircle"></article>
+			<article class="smallCircle"></article>
+			<article class="menuShape countriesNavLink"><a href="continents.php" class="menuButtons">Continents/Countries</a></article>
+			<article class="menuShape partnersNavLink"><a href="searches.php" class="menuButtons">Search Partners</a></article>
+			<article class="menuShape listsNavLink"><a href="lists.php" class="menuButtons">Lists</a></article>
+			<article class="menuShape activitiesNavLink"><a href="activities.php" class="menuButtons">Activities/Sights</a></article>
+			<div class="clear"></div>	
+		</nav>
+		<main>
+			<nav class="breadCrums">
+				<ul>
+					<li><a href="index.php">Home</a></li>
+					<li><img src="images/main/breadcrumsArrows.png" class="navArrows"></li>
+					<li><a href="signup.php">Contact Us</a></li>
+				</ul>
+			</nav>
+		    <h1 class="pageHeader headerSignUp">Contact Us</h1>					
+		    <div class="content">			    	
+				<div class="mapGeneralSettings mapOpacity mapFixedHeight smallMap">
+					<div class="actFrmReq"><h4>(*)Required Fields</h4></div>
+					<div class="contactusPage">									
+					<form name="freecontactform" method="post" action="freecontactformprocess.php" onsubmit="return validate.check(this)">						
+						  <label class="contactusPageUserNameLabel" for="Full_Name" class="required">(*)Full Name
+						 	<input class="chosen-text"  type="text" name="Full_Name" id="Full_Name" maxlength="80" style="width:230px"></label>
+						  
+						  <label class="contactusPageEmailLabel" for="Email_Address" class="required">(*)Email Address
+						  	<input class="chosen-text"  type="text" name="Email_Address" id="Email_Address" maxlength="100" style="width:230px"></label>
+						  
+						  <label class="contactusPageTelephoneLabel" for="Telephone_Number" class="not-required">Telephone Number
+						  	<input class="chosen-text"  type="text" name="Telephone_Number" id="Telephone_Number" maxlength="100" style="width:230px"></label>
+						  
+						  <label class="contactusPageMessageLabel" for="Your_Message" class="required">(*)Your Message</label>
+						  <textarea class="contactusPageMessageTextarea"  name="Your_Message" id="Your_Message" maxlength="2000"></textarea>
+						  
+						  <div class="antispammessage">
+						  To help prevent automated spam, please answer this question
+						  <br /><br />
+							  <div class="antispamquestion">
+							   Using only numbers, what is 10 plus 15? &nbsp; 
+							   <input type="text" name="AntiSpam" id="AntiSpam" maxlength="100" style="width:30px">
+							  </div>
+						  </div>
+						  <input id="contactusPageSearch" type="submit" value=" Submit Form ">
+					</form>
+					</div>
+				</div>
+			</div>
+		</main>
+	</div>
+</body>
+</html>

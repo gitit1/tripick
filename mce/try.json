@@ -1,0 +1,10 @@
+[
+	{"fname":"Peter","surname":"Gray","gender":"Man","phone":"+1(945)754-2391","address":"Genosar","group":"work","profile_image":"Peter_Gray.jpg"},
+	{"fname":"Gitit","surname":"Regev","gender":"Female","phone":"(050)2322138","address":"Genosar 15 Reshon LeZion","group":"work","profile_image":"gitit_regev.jpg"},
+	{"fname":"Michael","surname":"Edison","gender":"Man","phone":"+1(945)754-2391","group":"home","profile_image":"Michael_Edison.jpg"},
+	{"fname":"Gilbert","surname":"Brown","gender":"Man","phone":"+1(945)757-2361","group":"shops","profile_image":"contact_man.png"},
+	{"fname":"Manfred","surname":"Richdown","gender":"Man","phone":"+13(058)754-3591","group":"friends","profile_image":"contact_man.png"},
+	{"fname":"Elsa","gender":"Female","phone":"+1(945)754-2391","group":"spam","profile_image":"Elsa_111222.jpg"},
+	{"fname":"Nikita","gender":"Female","phone":"235-7856","group":"spam","profile_image":"contact_woman.png"}
+	
+]

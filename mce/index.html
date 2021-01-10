@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html ng-app="app">
+
+<head>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">	
+  	<link rel="stylesheet" href="style/style.css" type="text/css"/>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"> 	
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+	<script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+	<script src="js/script.js"></script>
+	<script src="js/dirPagination.js"></script>     
+</head>
+
+	<body>
+	    <div class="row">
+	      <div class="col-lg-8">
+	        <div class="contactListApp" ng-controller="addressController">
+	          <h1>Phone Book</h1>
+	
+	          <div class="row">
+	            <div class="col-xs-4">
+	              <label for="search" class="searchLabel">Search:</label>
+	              <input ng-model="q" id="search" class="form-control search-input search" placeholder="Filter text">
+	            </div>
+	            	<button ng-click="importFile();" class="import" >Import File</button>
+	            	<div id="exportF"><button ng-click="exportFile()" class="button export" >Export File</div>		            
+	            <div>
+					<button class="button addC" ng-click="toggleAddForm();">Insert New Contact</button>
+					<div class="addItem"><div class="addItemInner">						
+						<ng-form name="myForm" ng-controller="mainCtrl">  
+								<span class="insertNameL insertLabels">
+									<label>First Name:</label>
+									<input class="form-control input-sm fname" size="30" placeholder="Enter Contact First Name" ng-model="fname" ng-required />
+								</span>
+								<span class="insertNameL insertLabels">
+									<label>Last Name:</label>
+									<input class="form-control insertLname input-sm surname" ng-model="surname" placeholder="Enter Contact Last Name" ng-optional /><br/>
+								</span>						 
+								<span class="insertNumber insertLabels">															
+									<label>Phone Number:</label>
+									<input type="text" class="form-control insertPhone input-sm phone" ng-model="phone" name="phone" placeholder="Enter Contact Phone Number" ng-pattern="phoneNumbr" ng-required /><br/>								 
+ 								</span>
+								<span  class="insertGenderL insertLabels">															
+									<label>Gender:</label>
+									<select class="form-control insertGender input-sm gender" ng-model="gender" ng-init="Man">
+										<option ng-repeat="gender in genders" value="{{gender}}" ng-required>{{gender}}</option>
+									</select>																	
+								</span>													
+								<span  class="insertAddressL insertLabels" >
+									<label>Address:</label>
+									<input class="form-control insertAddress input-sm address" ng-model="address" placeholder="Enter Contact Adress" /><br/>
+								</span> 
+								<span  class="insertGroupL insertLabels" >
+									<label>Group:</label>
+									<select class="form-control InsertGroup input-sm group" ng-model="group" ng-init="Work">
+										<option ng-repeat="group in groups" value="{{group}}" ng-optional>{{group}}</option>
+									</select>															
+								</span>
+								<span class="error" ng-show="myForm.phone.$error.pattern">No matching - pattern [xx-xxxxxxx|| xxx-xxxxxxx]</span> 
+								<button ng-click="newContact()" class="btn-xs btn-add">Add</button>					
+						</ng-form>
+					</div></div>					
+	            </div>		               
+	          </div>         
+			  <div class="book_wrapper">
+				<div class="panel panel-default">
+					<div class="panel-body">	            	
+						<div id="mybook">							
+							<div class="tasks" ng-show="list.length">
+										<ul class="contactList">
+											<li dir-paginate="listItem in list | filter:q | itemsPerPage: pageSize" current-page="currentPage">
+													<div ng-controller="addressEditController">
+															<span class="bookContactNameL bookLabels">
+																<label>Name:</label>
+																<span>{{listItem.fname}} {{listItem.surname}}</span>
+															</span> 
+															<span class="bookPhoneNumber bookLabels">															
+																<label>Phone Number:</label>
+																<span>{{listItem.phone}}</span>															 
+															</span>
+															<span  class="bookGenderL bookLabels" >															
+																<label>Gender:</label>
+																<span>{{listItem.gender}}</span>																
+															</span>													
+															<span  class="bookAddressL bookLabels" >
+																<label>Address:</label>
+																<span>{{listItem.address}}</span>																
+															</span> 
+															<span  class="bookGroupL bookLabels" >
+																<label>Group:</label>
+																<span>{{listItem.group}}</span>																
+															</span>
+															<span  class="bookImgS" >
+																 <img class="bookImg"  ng-src="images/contacts/{{listItem.profile_image}}" imageonload />
+															</span>
+														<span ng-show="editorEnabled">
+															<input class="form-control bookContactFNameEdit bookLabelsEdit input-sm" size="30" placeholder="Enter Contact Name" ng-model="fname" ng-required />
+															<input class="form-control bookContactLNameEdit bookLabelsEdit input-sm" size="26" placeholder="Enter Contact Surname" ng-model="surname" ng-optional />
+															<select class="form-control bookContactGenderEdit bookLabelsEdit input-sm" ng-model="gender">
+																<option ng-repeat="gender in genders track by $index" value="{{gender}}">{{gender}}</option>
+															</select>														
+															<input class="form-control bookContactPhoneEdit bookLabelsEdit input-sm" size="26" placeholder="phone" ng-model="phone" ng-required />
+															<input class="form-control bookContactAddressEdit bookLabelsEdit input-sm" size="26" placeholder="address" ng-model="address" />
+															<select class="form-control bookContactGroupEdit bookLabelsEdit input-sm" ng-model="group">
+																<option ng-repeat="group in groups track by $index" value="{{group}}">{{group}}</option>
+															</select>
+															
+															<button class="btn-xs btn-ok" ng-click="save()">Ok</button>
+															<button class="btn-xs btn-cancel" ng-click="disableEditor()">Cancel</button>
+														</span>
+														<button class="btn-xs btn-edit" ng-click="enableEditor()"><i class="fa fa-pencil"></i>&nbsp;&nbsp;Edit</button>
+														<button class="btn-xs btn-del" ng-click="removeContact(listItem)"><i class="fa fa-trash"></i>&nbsp;&nbsp;Delete</button>
+												</div><!--addressEditController-->
+											</li><!--listItem in list-->
+										</ul>
+										<p>Total true contacts: {{list.length}}</p>									
+									</div><!--tasks-->
+								</div><!--mybook-->
+				          	<dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="dirPagination.tpl.html"></dir-pagination-controls>	              
+						</div><!--panel-body-->
+					</div><!--panel-default-->
+				</div><!--book_wrapper-->
+		      </div><!--contactListApp-->
+			</div><!--col-->
+		</div> <!--row-->
+	</body>
+</html>
