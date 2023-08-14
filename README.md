@@ -1,5 +1,5 @@
 # TriPick
-### http://tripick.gititregev.com/
+### [http://tripick.gititregev.com/](http://tripick.gititregev.info/)
 
 ___Demo user:___
 
